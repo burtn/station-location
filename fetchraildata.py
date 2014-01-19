@@ -71,13 +71,9 @@ for letter in Alphabet:
 		html = response.read()
 		(latlong, gridref) = get_latlong(html), get_gridref(html)
 		if (latlong == ""):
-			print "No GEODATA for " + get_station_name(station)
 			noGEODATA.write(station)
 		if (gridref == ""):
-			print "No GRIDREF for " + get_station_name(station)
 			noGRIDREF.write(station)
-		print get_station_name(station) + ": " + get_latlong(html)
-		print " OS Ref: " + get_gridref(html)
 		data_file.write(get_station_name(station) + "," + latlong.split(" ")[0].replace(";", '') + "," + latlong.split(" ")[1] + "," + gridref + "\n")
 		
 	
