@@ -2,7 +2,19 @@
 
 A python script which pulls LAT, LONG & OS GRID REF data for UK railway stations from Wikipedia. I wrote it because I just wanted a list of rail stations and associated locations and it seemed like far too much work figuring out ATOC's CIF format or parsing open street map data.
 
-The most recent scrape can be found in the file alldata.txt
+**The most recent scrape can be found in the file `data.csv`**
+
+###### Other Files
+
+`noGRIDREF.txt` contains a list of the stations which are missing OS GRID REF data.
+
+`noGEODATA.txt` contains a list of the stations which are missing Lat, Long data.
+
+###### Running
+
+Edit the values of `MAX_WAIT`, `MIN_WAIT` and the `useragent` string (*optional*)
+
+Run `python fetchraildata.py`, the files detailed above are stored in the same directory as the script.
 
 # Licence
 
