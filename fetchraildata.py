@@ -26,8 +26,8 @@ EXP_LATLONG = re.compile('<span class="geo">[0-9]+\.[0-9]+; \-*[0-9]+\.[0-9]+</s
 EXP_GRIDREF = re.compile('<a .+ href="http://toolserver.org/~rhaworth/os/coor_g.php?.+>.+</a>')
 EXP_STATIONURL = re.compile('"/wiki/.+_railway_station"')
 
-MIN_WAIT = 0
-MAX_WAIT = 10
+MIN_WAIT = 5
+MAX_WAIT = 30
 
 data_file.write("Station,Latitude,Longitude,OS Grid Ref\n")
 
@@ -48,7 +48,6 @@ def get_latlong(html):
 	
 def get_gridref(html):
 	gridref = re.findall(EXP_GRIDREF, html)
-	print gridref
 	if not gridref:
 		return ""
 	gridref[0] = re.sub('<a .+ href="http://toolserver.org/~rhaworth/os/coor_g.php?.+>\\b', '', gridref[0]).replace('</a>', '')
@@ -72,6 +71,7 @@ for letter in Alphabet:
 		(latlong, gridref) = get_latlong(html), get_gridref(html)
 		if (latlong == ""):
 			noGEODATA.write(station)
+			continue
 		if (gridref == ""):
 			noGRIDREF.write(station)
 		data_file.write(get_station_name(station) + "," + latlong.split(" ")[0].replace(";", '') + "," + latlong.split(" ")[1] + "," + gridref + "\n")
